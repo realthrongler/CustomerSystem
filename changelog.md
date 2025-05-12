@@ -5,3 +5,7 @@
 
 09/05/25
 - Flowchart created
+
+12/05/25
+- Mr.Nagra fixed program not being able to read the CSV file
+- Planning to rework validation system, using a while loop that will continuously ask the user for the right input until it is verified, then breaking the loop when verified
