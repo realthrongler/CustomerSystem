@@ -2,6 +2,7 @@
 # created yourself
 
 # More packages may be imported in the space below if approved by your instructor
+import csv
 
 def printMenu():
     print('''
@@ -11,34 +12,50 @@ def printMenu():
           3. Quit\n
           Enter menu option (1-3)
           ''')
-
-'''
-    This function is to be edited to achieve the task.
-    It is your decision to make this function a procedural or functional type
-    You may place as many or as few parameters as needed
-    This function may also be broken down further depending on your algorithm/approach
-'''
+    
 def enterCustomerInfo():
-    pass    # Remove this pass statement and add your own code below
+    '''
+        This function takes the customer's information as inputs and stores them to potentially be written to a data file. 
+        (See generateCustomerDataFile)
+    '''
+    firstName = str(input("Please enter the first name.\n"))
+    lastName = str(input("Please enter the last name.\n"))
+    city = str(input("Please enter the city of residence.\n"))
+    #Validating postal code
 
-'''
-    This function is to be edited to achieve the task.
-    It is your decision to make this function a procedural or functional type
-    You may place as many or as few parameters as needed
-    This function may also be broken down further depending on your algorithm/approach
-'''
+    #TODO: Make a system that actually works using while loops and breaking with each validation
+    #If the postal code returns true, we'll accept it and ask for the credit card, which will return true as well.
+    if validatePostalCode():
+        print("Postal code valid!")
+        #Validating credit card
+        if validateCreditCard():
+            print("Credit card valid!")
+        elif not validateCreditCard():
+            print("Credit card invalid! Please try again.")
+    elif not validatePostalCode:
+        print("Postal code incorrect! Please enter a valid postal code.")
+
+    
+
 def validatePostalCode():
-    pass    # Remove this pass statement and add your own code below
+    '''
+        This function reads from the CSV file containing the list of postal codes, 
+        and determines whether a valid postal code has been entered.
+    '''
+    code = str(input("Please input the user's postal code.\n"))
 
-'''
-    This function is to be edited to achieve the task.
-    It is your decision to make this function a procedural or functional type
-    You may place as many or as few parameters as needed
-    This function may also be broken down further depending on your algorithm/approach
-'''
+    pcList = []
+
+    with open('postal_codes.csv', 'r', newline='', encoding='ISO-8859-1') as csvfile:
+        pcReader = csv.reader(csvfile, delimiter='|')
+        next(pcReader, None) #skips the header
+        for row in pcReader:
+            pcList.append(row[0])
+
+    if code in pcList:
+        return True, code
 def validateCreditCard():
-    pass    # Remove this pass statement and add your own code below
-
+    print("this is a valid card frfr")
 '''
     This function is to be edited to achieve the task.
     It is your decision to make this function a procedural or functional type
