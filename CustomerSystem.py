@@ -18,23 +18,21 @@ def enterCustomerInfo():
         This function takes the customer's information as inputs and stores them to potentially be written to a data file. 
         (See generateCustomerDataFile)
     '''
+    #Getting customer information
     firstName = str(input("Please enter the first name.\n"))
     lastName = str(input("Please enter the last name.\n"))
     city = str(input("Please enter the city of residence.\n"))
-    #Validating postal code
+    
+    codeVerified = False
+    cardVerified = False
 
-    #TODO: Make a system that actually works using while loops and breaking with each validation
-    #If the postal code returns true, we'll accept it and ask for the credit card, which will return true as well.
-    if validatePostalCode():
-        print("Postal code valid!")
-        #Validating credit card
-        if validateCreditCard():
-            print("Credit card valid!")
-        elif not validateCreditCard():
-            print("Credit card invalid! Please try again.")
-    elif not validatePostalCode:
-        print("Postal code incorrect! Please enter a valid postal code.")
+    while codeVerified == False:
+        codeVerified = validatePostalCode()
+    print("Postal code validated!")
 
+    while cardVerified == False:
+        cardVerified = validateCreditCard()
+    
     
 
 def validatePostalCode():
@@ -52,16 +50,30 @@ def validatePostalCode():
         for row in pcReader:
             pcList.append(row[0])
 
-    if code in pcList:
+    if code.strip() in pcList:
         return True, code
+    else:
+        print("Postal code error. Please input a valid postal code.")
+        return False
+
 def validateCreditCard():
-    print("this is a valid card frfr")
-'''
-    This function is to be edited to achieve the task.
-    It is your decision to make this function a procedural or functional type
-    You may place as many or as few parameters as needed
-    This function may also be broken down further depending on your algorithm/approach
-'''
+    '''This function asks the user to input a credit card number and uses the Luhn algorithm to
+    verify whether or not it is a valid credit card number'''
+    cardNumber = list(input("Please input a credit card number."))
+
+    #Credit cards are 9 digits long, meaning anything else is invalid.
+    if len(cardNumber) != 9:
+        print(len(cardNumber))
+        print(cardNumber)
+        print("Card number length error. Please input a valid credit card number.")
+        validateCreditCard()
+    elif len(cardNumber) == 9:
+        reversedNumber = cardNumber.reverse()
+        reverseString = str(reversedNumber)
+        
+        print(oddDigits)
+        print(evenDigits)
+
 def generateCustomerDataFile():
     pass    # Remove this pass statement and add your own code below
 
@@ -84,7 +96,7 @@ generateCustomerOption = "2"
 exitCondition = "3"
 
 # More variables for the main may be declared in the space below
-
+customerData = {}
 
 while userInput != exitCondition:
     printMenu()                 # Printing out the main menu
