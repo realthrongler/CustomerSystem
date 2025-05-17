@@ -61,19 +61,28 @@ def validateCreditCard():
     verify whether or not it is a valid credit card number'''
     cardNumber = list(input("Please input a credit card number."))
 
-    #Credit cards are 9 digits long, meaning anything else is invalid.
-    if len(cardNumber) != 9:
-        print(len(cardNumber))
-        print(cardNumber)
-        print("Card number length error. Please input a valid credit card number.")
-        validateCreditCard()
-    elif len(cardNumber) == 9:
-        reversedNumber = cardNumber.reverse()
-        reverseString = str(reversedNumber)
-        
-        print(oddDigits)
-        print(evenDigits)
-
+    #credit card number validatio
+    #TODO: Make sure this actually works
+    for i in range(len(cardNumber)):
+        if cardNumber[i].isalpha:
+            print(cardNumber[i])
+            print("Please enter the credit card number only.")
+            validateCreditCard()
+        elif cardNumber[i] == " ":
+            cardNumber.remove(cardNumber[i])
+    
+    #reversal of credit card number
+    reversedNumber = cardNumber.reverse()
+    #digits in odd indices
+    odd_digits = []
+    for i in range(0, len(reversedNumber), 2): # type: ignore
+        odd_digits.append[reversedNumber[i]] # type: ignore
+    #digits in even indices
+    even_digits = []
+    for i in range(1, len(reversedNumber), 2): # type: ignore
+        even_digits.append[reversedNumber[i]] # type: ignore
+    print(odd_digits)
+    print(even_digits)
 def generateCustomerDataFile():
     pass    # Remove this pass statement and add your own code below
 
