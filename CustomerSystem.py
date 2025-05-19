@@ -50,7 +50,7 @@ def validatePostalCode():
         for row in pcReader:
             pcList.append(row[0])
 
-    if code.strip() in pcList:
+    if code.strip().upper() in pcList:
         return True, code
     else:
         print("Postal code error. Please input a valid postal code.")
@@ -59,28 +59,29 @@ def validatePostalCode():
 def validateCreditCard():
     '''This function asks the user to input a credit card number and uses the Luhn algorithm to
     verify whether or not it is a valid credit card number'''
-    cardNumber = list(input("Please input a credit card number."))
-
-    #credit card number validatio
-    #TODO: Make sure this actually works
+    cardInput = str(input("Please input a credit card number.\n")).strip()
+    cardNumber = list(cardInput)
+    
+    #credit card number validation
     for i in range(len(cardNumber)):
-        if cardNumber[i].isalpha:
+        if cardNumber[i].isalpha():
             print(cardNumber[i])
-            print("Please enter the credit card number only.")
+            print("Please enter the credit card number only, no letters.\n")
             validateCreditCard()
         elif cardNumber[i] == " ":
             cardNumber.remove(cardNumber[i])
     
     #reversal of credit card number
-    reversedNumber = cardNumber.reverse()
+    cardNumber.reverse()
+    reversedNumber = cardNumber
     #digits in odd indices
     odd_digits = []
-    for i in range(0, len(reversedNumber), 2): # type: ignore
-        odd_digits.append[reversedNumber[i]] # type: ignore
+    for i in range(0, len(reversedNumber), 2): 
+        odd_digits.append(reversedNumber[i]) 
     #digits in even indices
     even_digits = []
-    for i in range(1, len(reversedNumber), 2): # type: ignore
-        even_digits.append[reversedNumber[i]] # type: ignore
+    for i in range(1, len(reversedNumber), 2): 
+        even_digits.append(reversedNumber[i]) 
     print(odd_digits)
     print(even_digits)
 def generateCustomerDataFile():
