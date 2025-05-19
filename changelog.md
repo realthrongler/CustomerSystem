@@ -14,3 +14,10 @@
 - Fixed validation system using above system
 - Began working on credit card verification with the Luhn Algorithm
 - Added a dictionary to store customer data to be added to a data file
+
+19/05/25
+- Small quality of life changes
+- Added newline characters for the input credit card
+- Added the ability to input a lowercase postal code and still have it validate properly
+- Made the program more robust
+- Fixed first steps of Luhn algorithm
