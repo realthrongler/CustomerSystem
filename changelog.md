@@ -28,3 +28,5 @@
 - More readable variable names
 - More comments for internal documentation purposes
 - Completed writing to external CSV files
+- Error handling with writing to CSV files
+- More comments for readability
