@@ -163,6 +163,9 @@ def generateCustomerDataFile():
     when working with high numbers of customers'''
 
     file_name = str(input("Please input a file name with the extension \".csv\" for the data to be written to.\n"))
+    #Checking to see if .csv is attached to the end of the file, and if not, adding it for the user
+    if file_name[-3:-1] != ".csv":
+        file_name = f"{file_name}.csv"
     try:
         with open(str(file_name), "x", newline="") as csvfile:
             #initializing CSV writer
