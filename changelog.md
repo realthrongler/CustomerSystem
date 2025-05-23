@@ -21,3 +21,10 @@
 - Added the ability to input a lowercase postal code and still have it validate properly
 - Made the program more robust
 - Fixed first steps of Luhn algorithm
+
+22/05/25
+- Completed credit card verification
+- Added error handling for credit card verification
+- More readable variable names
+- More comments for internal documentation purposes
+- Completed writing to external CSV files
