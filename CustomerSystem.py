@@ -88,13 +88,21 @@ def validateCreditCard():
     reversedNumber = cardNumber
     
     #Checking to see if all the credit card numbers are zero
-    zero_Check = 0
-    for i in range(len(cardNumber)):
-        zero_Check += int(cardNumber[i])
-    if zero_Check == 0:
-        print("Please enter a credit card number that is not entirely zeroes.")
+    try:
+        zero_Check = 0
+        for i in range(len(cardNumber)):
+            zero_Check += int(cardNumber[i])
+        if zero_Check == 0:
+            print("Please enter a credit card number that is not entirely zeroes.")
+            return False
+    #This handles entries of other values, like when I accidentally pasted my entire code into the program and it crashed
+    except ValueError:
+        print("Please enter a number only.")
         return False
-
+    except:
+        print("Error. Please try again.")
+        return False
+        
     #digits in odd indices
     odd_digits = []
     for i in range(0, len(reversedNumber), 2): 
@@ -156,18 +164,19 @@ def generateCustomerDataFile():
 
     file_name = str(input("Please input a file name with the extension \".csv\" for the data to be written to.\n"))
     try:
-        with open(str(file_name), "w", newline="") as csvfile:
+        with open(str(file_name), "x", newline="") as csvfile:
             #initializing CSV writer
             writer = csv.DictWriter(csvfile, fieldnames=["First name", "Last name", "City", "Postal code", "Credit card"], delimiter="|")
-            
+                
             #Write the fieldnames in the first row
             writer.writeheader()
+
             try:
                 #Writing dictionary into CSV file
                 writer.writerows(customerData)
                 print("Data file generated!")
             except:
-                print("There was an error. Please make sure the CSV file you are trying to write into does not have any conflicting IDs.")    
+                print("There was an error. Please try again.")    
             #Emptying dictionary when written into file
             customerData.clear()
     except:
